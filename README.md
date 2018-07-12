@@ -11,3 +11,9 @@ npm install
 ```sh
 npm start
 ```
+
+## Development
+
+```sh
+npm run dev # starts nodemon on port 3000
+```
