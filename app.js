@@ -2,19 +2,27 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
+
+const dogs = require('./api/dogs')
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
+
 
 app.get('/', (req, res) => {
   res.json({
     message: 'Hello from Barkwire API'
   });
 });
+
+//THIS is the prepending for the router in dogs.js
+app.use('/api/v1/dogs', dogs);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
